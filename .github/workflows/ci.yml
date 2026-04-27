@@ -1,4 +1,13 @@
-tests:
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  tests:
     name: Tests
     runs-on: ubuntu-latest
 
@@ -9,7 +18,7 @@ tests:
       - name: Set up Go
         uses: actions/setup-go@v5
         with:
-          go-version: "1.26.0"
+          go-version: "1.22.0"
 
       - name: Go Tests
         run: go test ./... -cover
@@ -31,7 +40,7 @@ tests:
       - name: Set up Go
         uses: actions/setup-go@v5
         with:
-          go-version: "1.26.0"
+          go-version: "1.22.0"
 
       - name: Check formatting
         run: test -z $(go fmt ./...)
